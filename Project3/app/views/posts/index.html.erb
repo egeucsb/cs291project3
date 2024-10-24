@@ -1,0 +1,17 @@
+<h1>All Posts</h1>
+
+<%= link_to 'New Post', new_post_path %>
+
+<ul>
+  <% @posts.each do |post| %>
+    <li>
+      <%= link_to truncate(post.content, length: 100), post_path(post) %>
+      <br>
+      <small>
+        by <%= link_to post.user.username, posts_path(username: post.user.username) %> |
+        <%= pluralize(post.comments.count, "comment") %> |
+        Last updated <%= time_ago_in_words(post.updated_at) %> ago
+      </small>
+    </li>
+  <% end %>
+</ul>
