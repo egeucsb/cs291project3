@@ -1,190 +1,251 @@
 /* custom.css */
 
-/* Define CSS Variables for Primary Colors */
+/* Define CSS Variables for Primary and Secondary Colors */
 :root {
-    --color-dark-gray: #252323;
-    --color-slate-gray: #70798C;
-    --color-light-slate-gray: #9297A5;
-    --color-silver: #B3B5BD;
-  
-    /* Define CSS Variables for Secondary Colors */
-    --color-off-white: #F5F1ED;
-    --color-beige: #DAD2BC;
-    --color-taupe: #A99985;
-  
-    /* Additional Variables */
-    --font-family: 'Arial, sans-serif';
+  --color-dark-gray: #252323;
+  --color-slate-gray: #70798C;
+  --color-light-slate-gray: #9297A5;
+  --color-silver: #B3B5BD;
+
+  /* Secondary Colors */
+  --color-off-white: #F5F1ED;
+  --color-beige: #DAD2BC;
+  --color-taupe: #A99985;
+
+  /* Font Family */
+  --font-family: 'Montserrat', Calibri, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Apply Base Styles */
+body {
+  background-color: var(--color-off-white);
+  color: var(--color-dark-gray);
+  font-family: var(--font-family);
+  margin: 0;
+  padding: 0;
+}
+
+/* Container */
+.container {
+  width: 90%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Navigation Bar */
+.navbar {
+  display: flex;
+  justify-content: space-between; /* Positions nav-left and nav-right at opposite ends */
+  align-items: center; /* Vertically centers items within the navbar */
+  background-color: var(--color-slate-gray);
+  padding: 15px 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Navigation Links - Left Side */
+.nav-left a {
+  color: var(--color-off-white);
+  margin-right: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.nav-left a:hover {
+  color: var(--color-taupe);
+}
+
+.nav-right form {
+  display: flex;
+  align-items: center;
+  margin: 0;
+}
+
+.logout-button {
+  font-family: var(--font-family);
+  padding: 0;
+  font-size: 12px;
+  font-weight: 600;
+  margin: 0;
+  background-color: var(--color-slate-gray);
+}
+
+.logout-button:hover {
+  color: rgb(220, 134, 134);
+  background-color: var(--color-slate-gray);
+}
+
+/* Flash Messages */
+.flash {
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+}
+
+.flash.notice {
+  background-color: var(--color-beige);
+  color: var(--color-dark-gray);
+  border-left: 5px solid var(--color-taupe);
+}
+
+.flash.alert {
+  background-color: #f8d7da; /* Light red for alerts */
+  color: #721c24; /* Dark red text */
+  border-left: 5px solid #f5c6cb;
+}
+
+/* Forms */
+form {
+  margin-bottom: 20px;
+}
+
+form label {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--color-dark-gray);
+}
+
+form input[type="text"],
+form textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--color-silver);
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+
+form input[type="submit"],
+button {
+  background-color: var(--color-taupe);
+  color: var(--color-off-white);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+form input[type="submit"]:hover,
+button:hover {
+  background-color: var(--color-beige);
+  color: var(--color-dark-gray);
+}
+
+/* Posts and Comments */
+.post, .comment {
+  background-color: var(--color-beige);
+  padding: 15px;
+  border: 1px solid var(--color-silver);
+  border-radius: 5px;
+  margin-bottom: 15px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.post:hover, .comment:hover {
+  background-color: var(--color-silver);
+  transition: background-color 0.3s ease;
+}
+
+.post .actions, .comment .actions {
+  margin-top: 10px;
+}
+
+/* Delete Button */
+.delete-button {
+  color: #d9534f; /* Red color for delete */
+  text-decoration: underline;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+}
+
+.delete-button:hover {
+  color: #c9302c; /* Darker red on hover */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
   }
-  
-  /* Apply Base Styles */
-  body {
-    background-color: var(--color-off-white);
-    color: var(--color-dark-gray);
-    font-family: var(--font-family);
-    margin: 0;
-    padding: 0;
-  }
-  
-  /* Links */
-  a {
-    color: var(--color-slate-gray);
-    text-decoration: none;
-  }
-  
-  a:hover {
-    color: var(--color-taupe);
-    text-decoration: underline;
-  }
-  
-  /* Headings */
-  h1, h2, h3, h4, h5, h6 {
-    color: var(--color-dark-gray);
-    margin-bottom: 0.5em;
-  }
-  
-  /* Container */
-  .container {
-    width: 90%;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-  }
-  
-  nav {
-    background-color: var(--color-slate-gray);
-    padding: 15px 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  nav a {
-    color: var(--color-off-white);
-    margin-right: 20px;
-    font-size: 16px;
-  }
-  
-  nav a:hover {
-    color: var(--color-taupe);
-  }
-  
-  
-  /* Flash Messages */
-  .flash {
-    padding: 10px 20px;
-    margin-bottom: 20px;
-    border-radius: 5px;
-  }
-  
-  .flash.notice {
-    background-color: var(--color-beige);
-    color: var(--color-dark-gray);
-    border-left: 5px solid var(--color-taupe);
-  }
-  
-  .flash.alert {
-    background-color: #f8d7da; /* Light red for alerts */
-    color: #721c24; /* Dark red text */
-    border-left: 5px solid #f5c6cb;
-  }
-  
-  /* Forms */
-  form {
-    margin-bottom: 20px;
-  }
-  
-  form label {
-    display: block;
-    margin-bottom: 5px;
-    color: var(--color-dark-gray);
-  }
-  
-  form input[type="text"],
-  form textarea {
+
+  .nav-left, .nav-right {
     width: 100%;
-    padding: 10px;
-    border: 1px solid var(--color-silver);
-    border-radius: 4px;
-    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
     margin-bottom: 10px;
   }
-  
-  form input[type="submit"],
-  button {
-    background-color: var(--color-taupe);
-    color: var(--color-off-white);
-    border: none;
-    padding: 10px 20px;
-    border-radius: 4px;
-    cursor: pointer;
+
+  .nav-left a, .nav-right a, .nav-right .logout-button {
+    margin-right: 10px;
+    font-size: 14px;
   }
-  
-  form input[type="submit"]:hover,
-  button:hover {
-    background-color: var(--color-beige);
-    color: var(--color-dark-gray);
+
+  .container {
+    width: 95%;
+    padding: 10px;
   }
-  
-  /* Posts and Comments */
-  .post, .comment {
-    background-color: var(--color-beige);
-    padding: 15px;
-    border: 1px solid var(--color-silver);
-    border-radius: 5px;
-    margin-bottom: 15px;
+
+  form input[type="text"],
+  form textarea {
+    padding: 8px;
   }
-  
-  .post .actions, .comment .actions {
-    margin-top: 10px;
+
+  button, input[type="submit"] {
+    width: 100%;
+    padding: 10px;
   }
-  
-  .delete-button {
-    background: none;
-    border: none;
-    padding: 0;
-    color: #d9534f; /* Red color for delete */
-    text-decoration: underline;
-    cursor: pointer;
-    font: inherit;
-  }
-  
-  /* Buttons as Links */
-  button.link-button {
-    background: none;
-    border: none;
-    padding: 0;
-    color: var(--color-slate-gray);
-    text-decoration: underline;
-    cursor: pointer;
-    font: inherit;
-  }
-  
-  button.link-button:hover {
-    color: var(--color-taupe);
-  }
-  
-  @media (max-width: 768px) {
-    nav {
-      padding: 10px 15px;
-    }
-  
-    nav a {
-      display: block;
-      margin-bottom: 10px;
-    }
-  
-    .container {
-      width: 95%;
-      padding: 10px;
-    }
-  
-    form input[type="text"],
-    form textarea {
-      padding: 8px;
-    }
-  
-    button, input[type="submit"] {
-      width: 100%;
-      padding: 10px;
-    }
-  }
-  
-  
+}
+
+/* Typography Enhancements */
+h1 {
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+h2 {
+  font-size: 1.5em;
+  margin-bottom: 15px;
+}
+
+h3 {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+p {
+  line-height: 1.6;
+}
+
+
+a {
+  color: var(--color-slate-gray); 
+  text-decoration: none;
+  text-decoration-color: var(--color-taupe);
+  transition: color 0.3s ease, text-decoration-color 0.3s ease;
+}
+
+a:hover {
+  color: var(--color-off-white);
+  text-decoration-color: var(--color-beige);
+}
+
+.delete-button {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--color-slate-gray);
+  text-decoration: underline;
+  cursor: pointer;
+  font: inherit;
+  transition: color 0.3s ease;
+}
+
+.delete-button:hover {
+  color: var(--color-taupe);
+}

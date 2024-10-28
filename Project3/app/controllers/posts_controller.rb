@@ -45,12 +45,15 @@ class PostsController < ApplicationController
     end
   end
 
-  # DELETE /posts/:id
   def destroy
-    @post.destroy
-    flash[:notice] = "Post deleted successfully."
-    redirect_to posts_path
+    if @post.user == current_user
+      @post.destroy
+      redirect_to posts_path, notice: 'Post was successfully deleted.'
+    else
+      redirect_to posts_path, alert: 'You are not authorized to delete this post.'
+    end
   end
+  
 
   private
 
