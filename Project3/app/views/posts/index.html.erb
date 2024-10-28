@@ -1,17 +1,16 @@
 <h1>All Posts</h1>
 
-<%= link_to 'New Post', new_post_path %>
-
-<ul>
-  <% @posts.each do |post| %>
-    <li>
-      <%= link_to truncate(post.content, length: 100), post_path(post) %>
-      <br>
-      <small>
-        by <%= link_to post.user.username, posts_path(username: post.user.username) %> |
-        <%= pluralize(post.comments.count, "comment") %> |
-        Last updated <%= time_ago_in_words(post.updated_at) %> ago
-      </small>
-    </li>
-  <% end %>
-</ul>
+<% @posts.each do |post| %>
+  <div class="post">
+    <p><strong>Author:</strong> <%= link_to post.user.username, posts_path(username: post.user.username) %></p>
+    <p><strong>Content:</strong> <%= post.content %></p>
+    <p><strong>Last Updated:</strong> <%= post.updated_at.strftime("%B %d, %Y at %I:%M %p") %></p>
+    <div class="actions">
+      <%= link_to 'View', post_path(post) %>
+      <% if post.user == current_user %>
+        | <%= link_to 'Edit', edit_post_path(post) %>
+        | <%= link_to 'Delete', post_path(post), method: :delete, data: { confirm: 'Are you sure you want to delete this post?' } %>
+      <% end %>
+    </div>
+  </div>
+<% end %>

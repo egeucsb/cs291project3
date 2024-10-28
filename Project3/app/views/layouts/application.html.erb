@@ -1,33 +1,43 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>DemoRailsApp</title>
+    <title>MyRailsApp</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbo-track': 'reload' %>
-    <%= javascript_importmap_tags %>
+    <%= stylesheet_link_tag 'custom', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-  <nav>
-  <% if logged_in? %>
-    <p>Logged in as <strong><%= current_user.username %></strong></p>
-<%= button_to 'Logout', logout_path, method: :delete, data: { confirm: 'Are you sure you want to logout?' }, class: "logout-button" %>
-  <% else %>
-    <%= link_to 'Login', login_path %>
-  <% end %>
-</nav>
+    <!-- Navigation Bar -->
+    <nav>
+      <%= link_to 'Home', root_path %>
+      <% if logged_in? %>
+        <%= link_to 'New Post', new_post_path %>
+        <%= link_to 'Logout', logout_path, method: :delete, data: { confirm: 'Are you sure you want to logout?' } %>
+      <% else %>
+        <%= link_to 'Login', login_path %>
+      <% end %>
+    </nav>
 
+    <!-- Flash Messages -->
+    <div class="container">
+      <% if flash[:notice] %>
+        <div class="flash notice">
+          <%= flash[:notice] %>
+        </div>
+      <% end %>
+      <% if flash[:alert] %>
+        <div class="flash alert">
+          <%= flash[:alert] %>
+        </div>
+      <% end %>
+    </div>
 
-    <% if flash[:notice] %>
-      <p style="color: green;"><%= flash[:notice] %></p>
-    <% end %>
-
-    <% if flash[:alert] %>
-      <p style="color: red;"><%= flash[:alert] %></p>
-    <% end %>
-
-    <%= yield %>
+    <!-- Main Content -->
+    <div class="container">
+      <%= yield %>
+    </div>
   </body>
 </html>
